@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class ProductService
 {
     protected $productRepository;
-    
+
     public function __construct(ProductRepository $productRepository) {
         $this->productRepository = $productRepository;
     }
@@ -27,5 +27,11 @@ class ProductService
         return DB::transaction(function () use ($productId) {
             return $this->productRepository->deleteProduct($productId);
         });
+    }
+
+    public function findProduct(int $productId)
+    {
+        return $this->productRepository->find($productId);
+
     }
 }

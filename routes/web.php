@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\BidController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,6 +17,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::controller(ProductController::class)->group(function () {
         Route::post('/product', 'store')->name('products.store');
         Route::delete('/products/{product}', 'destroy')->name('products.destroy');
+        Route::get('/products/{product}', 'show')->name('products.show');
+    });
+
+     Route::controller(BidController::class)->group(function () {
+        Route::get('/bid', 'index')->name('bid.index');
     });
 
     Route::controller(ProfileController::class)->group(function () {

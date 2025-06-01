@@ -52,7 +52,7 @@
                                     <td class="px-6 py-4">
                                         @if (!$product->is_ended)
                                             <button class="bg-red-600 text-black px-3 py-1 rounded text-sm"
-                                                onclick="openBidModal({{ $product->id }})">
+                                                onclick="window.location.href='{{ route('products.show', $product->id) }}'">
                                                 Bid Now
                                             </button>
                                         @else
@@ -71,7 +71,7 @@
                                         <td class="px-6 py-4 flex justify-center space-x-2">
                                             @can('update', $product)
                                                 <button onclick="showProductModal({{ $product }})"
-                                                    class="text-blue-600 hover:text-blue-800" title="Edit Product">
+                                                    class="text-blue-600 hover:text-blue-800" title="Edit Product" @if($product->is_ended) disabled @endif>
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none"
                                                         viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                                         <path stroke-linecap="round" stroke-linejoin="round"

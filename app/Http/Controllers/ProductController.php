@@ -63,4 +63,9 @@ class ProductController extends Controller
             return back()->withInput()->withErrors(['unexpected_error' => 'An unexpected error occurred. Please try again later.']);
         }
     }
+
+    public function show($id){
+        $productId = $id;
+        return view('product.product',  compact('productId'));
+    }
 }

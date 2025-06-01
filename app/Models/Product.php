@@ -19,7 +19,8 @@ class Product extends Model
 
     public function getDisplayBidAmountAttribute()
     {
-        return $this->bids_max_amount ?? $this->starting_bid;
+       $maxBid = $this->bids()->max('amount');
+       return $maxBid ?? $this->starting_bid;
     }
 
     public function highestBid()

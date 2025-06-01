@@ -17,12 +17,15 @@ class ProductRepository
         return Product::with('bids')->findOrFail($id);
     }
 
-    public function saveProduct(array $productData): Product
+    public function saveProduct(array $productData)
     {
-        return Product::updateOrCreate(
-            ['id' => $productData['id'] ?? null],
-            $productData
-        );
+        $productId = $productData['id'] ?? null;
+        if($productId && $this->find($productId)){
+            Product::where('id', $productId)->update($productData);
+        }else{
+            Product::create($productData);
+        }
+        return true;
     }
 
     public function deleteProduct(int $productId): bool
