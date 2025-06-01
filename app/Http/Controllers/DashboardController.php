@@ -3,20 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Services\ProductService;
+use App\Repositories\ProductRepository;
+use App\Events\ChatMessageSent;
+use App\Models\Message;
 
 class DashboardController extends Controller
 {
-    // protected $eventService;
+    protected $service;
+    public function __construct(ProductService $service) {
+        $this->service = $service;
+    }
 
-    // public function __construct(EventService $eventService)
-    // {
-    //     $this->eventService = $eventService;
-    // }
-
-    public function index()
-    {
-        // fetch event list and details
-        // $events = $this->eventService->getEvents();
-        return view('dashboard');
+    public function index(ProductRepository $repo) {
+        $products = $repo->all();
+        return view('dashboard', compact('products'));
     }
 }

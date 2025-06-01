@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->text('description')->nullable();
-            $table->timestamp('end_time');
+            $table->decimal('starting_bid', 10, 2);
+            $table->timestamp('bid_end_time');
             $table->timestamps();
         });
     }
